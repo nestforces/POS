@@ -1,5 +1,6 @@
 # Point of Sale (POS) System
 
+
 ## Features
 
 ### User Authentication
