@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {  findCashierService, updateCashierService, deleteCashierService } from "../services/userServices";
+import {  findCashierService, updateCashierService, deleteCashierService, updateAvatarService } from "../services/userServices";
 
 
 const findCashierController = async (req: Request, res: Response) => {
@@ -38,6 +38,17 @@ const deleteCashierController = async (req: Request, res: Response) => {
         return res.status(500).send(err.message)
     }
 }
+const updateAvatarController = async (req: Request, res: Response) => {
+    try{
+        const {id} = req.params
+        await updateAvatarService(Number(id), String(req.file?.filename))
+        return res.status(200).json({
+            message: "Success",
+        });
+    } catch (err: any){
+        return res.status(500).send(err.message)
+    }
+}
 
 
-export {findCashierController, updateCashierController, deleteCashierController}
+export {findCashierController, updateCashierController, deleteCashierController, updateAvatarController}

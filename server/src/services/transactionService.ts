@@ -2,6 +2,7 @@ import {
 	createtransactionsQuery,
 	updateProductQuantityQuery,
 	createTransactionItemsQuery,
+	getTransactionQuery,
 } from "../queries/transactionQuery";
 
 const createTransactionsService = async (
@@ -30,4 +31,13 @@ const createTransactionsService = async (
 	}
 };
 
-export { createTransactionsService };
+const getTransactionService = async () => {
+    try{
+        const cashier = await getTransactionQuery();
+        return cashier;
+    } catch (err){
+        throw err;
+    }
+};
+
+export { createTransactionsService, getTransactionService };

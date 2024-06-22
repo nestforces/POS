@@ -12,6 +12,16 @@ const productStorage = multer.diskStorage({
   },
 });
 
+const avatarStorage = multer.diskStorage({
+  destination: (req: Request, res, cb) => {
+    cb(null, path.join(__dirname, '../public/images/avatar'));
+  },
+  filename: (req: Request, file, cb) => {
+    const { username } = req.body as { username: string };
+    cb(null, `avatar_${username}-${Date.now()}-${file.originalname}`);
+  },
+});
+
 const fileFilter = (req: Request, file: any, cb: any) => {
   const fileType = file.mimetype.split('/')[1];
   if (fileType === 'png' || fileType === 'jpg' || fileType === 'jpeg' || fileType === 'gif') {
@@ -31,4 +41,10 @@ const uploadProductFile = multer({
   limits,
 }).single('product');
 
-export { uploadProductFile };
+const uploadAvatarFile = multer({
+  storage: avatarStorage as multer.StorageEngine, 
+  fileFilter: fileFilter,
+  limits: limits,
+}).single('avatar');
+
+export { uploadProductFile, uploadAvatarFile };

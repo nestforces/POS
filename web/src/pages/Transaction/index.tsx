@@ -75,6 +75,7 @@ export const Transaction = () => {
 	const [total, setTotal] = useState<number>(
 		transactionPrice + transactionPrice * (10 / 100)
 	);
+console.log(cart);
 
 	const bayar = async (
 		totalQuantity: number,
@@ -149,7 +150,7 @@ export const Transaction = () => {
 				<Flex w={"full"} justify={"space-between"}>
 					<Flex direction={"column"} gap={"24px"} fontSize={"16px"}>
 						<Text display={"flex"} gap={"8px"} alignItems={"center"} fontSize={{ base: "12px", xl: "16px" }}>
-							<IconNumber /> SBX{state?.transactionCode}
+							<IconNumber /> PC{state?.transactionCode}
 						</Text>
 						<Flex alignItems={"center"} gap={"8px"} fontSize={{ base: "12px", xl: "16px" }}>
 							<IconUser width={"24px"} height={"24px"} />
@@ -285,6 +286,7 @@ export const Transaction = () => {
 							setActive={setIsActivePage}
 							setIsPayment={setPayment}
 							setTransactionSuccess={setTransactionSuccess}
+							cart={cart}
 						/>
 					)}
 					{activePage == "PaymentSuccess" && (
@@ -295,6 +297,8 @@ export const Transaction = () => {
 							codeTransaction={state?.transactionCode}
 							transactionSuccess={transactionSuccess}
 							cash={cash}
+							cart={cart}
+							cashier_id={user}
 						/>
 					)}
 					{activePage == "Qris" && (

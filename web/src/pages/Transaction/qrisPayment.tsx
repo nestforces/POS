@@ -13,7 +13,7 @@ export const QrisPayment = ({
 			<Flex w={"full"} justify={"center"} align={"center"} mt={"50px"}>
 				<QRCodeSVG
 					size={300}
-					value={`${name}-SBX${codeTransaction}-${Date.now()}`}
+					value={`${name}-PC${codeTransaction}-${Date.now()}`}
           fgColor={"rgba(40, 96, 67, 1)"}
 				/>
 			</Flex>

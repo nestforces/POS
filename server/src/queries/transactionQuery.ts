@@ -57,8 +57,32 @@ const updateProductQuantityQuery = async (
 	}
 };
 
+const getTransactionQuery = async () => {
+	try {
+	  // Fetch the maximum id from the transactions table
+	  const lastTransaction = await prisma.transactions.findFirst({
+		orderBy: {
+		  id: 'desc'
+		},
+		select: {
+		  id: true
+		}
+	  });
+  
+	  // Increment the ID and format it as a zero-padded string
+	  const newId = (lastTransaction?.id ?? 0) + 1;
+	  const formattedId = newId.toString().padStart(6, '0');
+  
+	  return formattedId;
+	} catch (err) {
+	  throw err;
+	}
+  };
+  
+
 export {
 	createTransactionItemsQuery,
 	createtransactionsQuery,
 	updateProductQuantityQuery,
+	getTransactionQuery
 };

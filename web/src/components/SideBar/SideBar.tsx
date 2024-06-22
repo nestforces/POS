@@ -89,6 +89,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 			pos="fixed"
 			h="full"
 			{...rest}
+			overflowY='auto'
 		>
 			<Flex justifyContent={"flex-end"}>
 				<CloseButton

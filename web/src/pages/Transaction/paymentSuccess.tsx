@@ -10,6 +10,7 @@ import { useState, CSSProperties } from "react";
 import { IconNumber } from "@tabler/icons-react";
 
 import BounceLoader from "react-spinners/BounceLoader";
+import { printReceipt } from "../../lib/utils/print";
 
 const override: CSSProperties = {
 	display: "block",
@@ -24,6 +25,8 @@ export const PaymentSuccess = ({
 	transactionSuccess,
 	total,
 	cash,
+	cart,
+	cashier_id,
 }: any) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -157,7 +160,7 @@ export const PaymentSuccess = ({
 						<Text>Order ID</Text>
 						<Text display={"flex"} gap={"8px"} alignItems={"center"}>
 							<IconNumber />
-							SBX{codeTransaction}
+							PC{codeTransaction}
 						</Text>
 					</Flex>
 					<Flex justify={"space-between"}>
@@ -193,6 +196,21 @@ export const PaymentSuccess = ({
 				}}
 			>
 				Back to Menu
+			</Button>
+			<Button
+				marginTop={'10px'}
+				w={"full"}
+				h={"44px"}
+				borderRadius={"100px"}
+				background={"var(--brand-brand-500, #286043)"}
+				color={"var(--black-b-0, #FFF)"}
+				isDisabled={!paymentSuccess}
+				p={"0px 24px"}
+				onClick={() => {
+					printReceipt(codeTransaction, cart, total, cashier_id, payment, (payment - total))
+				}}
+			>
+				Print
 			</Button>
 		</Flex>
 	);

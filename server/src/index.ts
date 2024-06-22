@@ -26,6 +26,7 @@ import reportRouter from './routes/reportRouter'
 
 import authRouter from "../src/routes/authRouter"
 import userRouter from "../src/routes/userRouter"
+import transactionRouter from '../src/routes/transactionRouter'
 
 
 app.use("/auth", authRouter)
@@ -34,6 +35,7 @@ app.use("/user", userRouter)
 app.use('/products', productRouter)
 app.use('/product', productRouter)
 app.use('/report', reportRouter)
+app.use('/transaction', transactionRouter)
 
 app.use("/uploads", express.static(path.join(__dirname, "./public/images")));
 

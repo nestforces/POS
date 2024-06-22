@@ -8,7 +8,7 @@ export const CashPayment = ({
 	total,
 	setActive,
 	setIsPayment,
-	setTransactionSuccess,
+	setTransactionSuccess
 }: any) => {
 	const [payment, setPayment] = useState<any>(0 || "");
 

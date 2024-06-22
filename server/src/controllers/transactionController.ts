@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createTransactionsService } from "../services/transactionService";
+import { createTransactionsService, getTransactionService } from "../services/transactionService";
 
 const createTransactionController = async (
 	req: Request,
@@ -13,7 +13,7 @@ const createTransactionController = async (
 			cashier_id,
       cart,
 		);
-    // console.log(result);
+    console.log(total_quantity, total_price, cashier_id, cart);
     
 
 		res.status(200).json({
@@ -27,5 +27,17 @@ const createTransactionController = async (
 	}
 };
 
+const getTransactionController = async (req: Request, res: Response) => {
+    try{
+        const result = await getTransactionService();
+        return res.status(200).json({
+            message: "Success",
+            data: result,
+          });
+    } catch (err: any){
+        return res.status(500).send(err.message)
+    }
+}
 
-export { createTransactionController };
+
+export { createTransactionController, getTransactionController };

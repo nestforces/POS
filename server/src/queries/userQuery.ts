@@ -53,4 +53,15 @@ const deleteCashierQuery = async (id: number) => {
   }
 };
 
-export {findUserQuery, findCashierQuery, updateCashierQuery, deleteCashierQuery};
+const updateAvatarQuery = async (id: number, avatar: string) => {
+  try{
+      await prisma.users.update({
+          where:{ id: id },
+          data: {avatar}
+      });
+  } catch (err){
+      throw err;
+  }
+};
+
+export {findUserQuery, findCashierQuery, updateCashierQuery, deleteCashierQuery, updateAvatarQuery};

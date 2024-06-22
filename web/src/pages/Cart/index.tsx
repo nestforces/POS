@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import { IconArmchair } from "@tabler/icons-react";
 import { IconPaperBag } from "@tabler/icons-react";
 import { IconNumber } from "@tabler/icons-react";
+import axios from "axios";
 
 export const Cart = () => {
 	const [name, setName] = useState<string>();
@@ -45,9 +46,15 @@ export const Cart = () => {
 		"December",
 	];
 
-	const codeTransaction = () => {
-		const reandomNum = Math.random().toString().slice(2, 10);
-		setRandomCode(reandomNum);
+	const codeTransaction = async () => {
+		// const reandomNum = Math.random().toString().slice(2, 10);
+		const codeTransaction1 = await axios.get(
+			`${import.meta.env.VITE_APP_API_BASE_URL}/transaction/code-transaction`,
+			
+		);
+		console.log(codeTransaction1);
+		
+		setRandomCode(codeTransaction1?.data?.data);
 	};
 
 	useEffect(() => {
@@ -72,7 +79,7 @@ export const Cart = () => {
 			>
 				<Flex h={"full"} align={"center"}>
 					<Text display={"flex"} gap={"8px"} fontSize={{base: "12px", sm: "16px"}} alignItems={"center"}>
-						<IconNumber /> SBX{randomCode}
+						<IconNumber /> PC{randomCode}
 					</Text>
 				</Flex>
 
